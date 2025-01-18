@@ -61,7 +61,7 @@ const loginUser = async (req, res) => {
             jwtSecret,
             { expiresIn: '1h' }
         );
-
+console.log(user.isAdmin)
         res.status(200).json({ message: "Login successful", token });
     } catch (error) {
         res.status(500).json({ message: "Server error", error });

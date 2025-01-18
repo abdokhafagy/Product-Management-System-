@@ -9,8 +9,16 @@ const createProduct = async (req, res) => {
             return res.status(400).json({ message: 'Validation Error', details: error.details });
         }
         //name, description, price, and imageUrl 
-        const {name,description,price,imageUrl} = req.body;
-        const createdProduct = new Product({name,description,price,imageUrl});
+        // Destructure the necessary fields from the request body
+        const { name, description, price } = req.body;
+
+        // Check if a file was uploaded
+        let imageUrl = null;
+        if (req.file) {
+            // Set the image URL to the file path
+            imageUrl = req.file.path;
+        }
+        const createdProduct = new Product({ name, description, price, imageUrl });
         await createdProduct.save();
 
         res.status(201).json(createdProduct);

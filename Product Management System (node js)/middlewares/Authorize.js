@@ -13,10 +13,9 @@ const authorizeAdmin = (req, res, next) => {
 
         // Verify and decode the token
         const decodedPayload = jwt.verify(token, jwtSecret);
-        console.log(decodedPayload);
 
         // Check if the user is an admin
-        if (!decodedPayload.isAdmin) {
+        if (!decodedPayload.role) {
             return res.status(403).json({ message: 'Access denied. Admins only.' });
         }
 

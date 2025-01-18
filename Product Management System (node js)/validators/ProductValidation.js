@@ -14,10 +14,10 @@ const productSchema = Joi.object({
         'number.base': 'Price must be a number',
         'any.required': 'Price is required'
     }),
-    imageUrl: Joi.string().uri().required().messages({
+    imageUrl: Joi.string().uri().messages({
         'string.base': 'Image URL must be a string',
         'string.uri': 'Image URL must be a valid URI',
-        'any.required': 'Image URL is required'
+        // 'any.required': 'Image URL is required'
     })
 });
 
